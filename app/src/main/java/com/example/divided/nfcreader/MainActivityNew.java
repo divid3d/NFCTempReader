@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -24,29 +25,52 @@ public class MainActivityNew extends AppCompatActivity {
     NfcAdapter mNfcAdapter;
     PendingIntent mPendingIntent;
     NfcV nfcvTag;
-    RelativeLayout mNfcInfoSegment;
     RelativeLayout configSegment;
     RelativeLayout initLayout;
+    RelativeLayout infoSegment;
     LinearLayout spinnersSegment;
     Button mSingle;
     Button mMulti;
     Button mStartMeasure;
     EditText measureCount;
     EditText measureTimeStamp;
+    TextView textViewSerialNumber;
+    TextView textViewTechAvailable;
     Spinner measureTimeUnit;
     boolean isSingleChoosen = false;
     boolean isMuliChoosen = false;
-    String crrentNfcId;
 
 
     @Override
     protected void onNewIntent(Intent intent) {
         if (NfcAdapter.ACTION_TAG_DISCOVERED.equals(intent.getAction()) || NfcAdapter.ACTION_TECH_DISCOVERED.equals(intent.getAction())) {
 
-
             Tag currentTag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
             byte[] id = currentTag.getId();
 
+            String currentNfcId = Utils.byteArrayToHexString(id);
+            String[] idSplitted = Utils.splitToNChar(currentNfcId, 2);
+            StringBuilder idBuilder = new StringBuilder();
+            for (int i = 0; i < idSplitted.length; i++) {
+                if (i < idSplitted.length - 1) {
+                    idBuilder.append(idSplitted[i]).append(":");
+                } else {
+                    idBuilder.append(idSplitted[i]);
+                }
+
+            }
+
+            textViewSerialNumber.setText(idBuilder.toString());
+
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < currentTag.getTechList().length; i++) {
+                if (i < currentTag.getTechList().length - 1) {
+                    sb.append(currentTag.getTechList()[i]).append(", ");
+                } else {
+                    sb.append(currentTag.getTechList()[i]);
+                }
+            }
+            textViewTechAvailable.setText(sb.toString());
 
             for (String tech : currentTag.getTechList()) {
 
@@ -55,9 +79,9 @@ public class MainActivityNew extends AppCompatActivity {
 
                     try {
                         nfcvTag.connect();
-                        configSegment.setVisibility(View.VISIBLE);
                         initLayout.setVisibility(View.GONE);
-
+                        configSegment.setVisibility(View.VISIBLE);
+                        infoSegment.setVisibility(View.VISIBLE);
                     } catch (IOException e) {
                         e.printStackTrace();
                         Toast.makeText(getApplicationContext(), "Could not open a connection!", Toast.LENGTH_SHORT).show();
@@ -81,6 +105,18 @@ public class MainActivityNew extends AppCompatActivity {
         initLayout = findViewById(R.id.init_layout);
         configSegment = findViewById(R.id.config_layout);
         configSegment.setVisibility(View.GONE);
+        infoSegment = findViewById(R.id.nfc_info_segment);
+        infoSegment.setVisibility(View.GONE);
+        TextView nfcSerialLabel = findViewById(R.id.nfc_serial).findViewById(R.id.text_view_label);
+        nfcSerialLabel.setText("Serial number");
+        TextView nfcTechLabel = findViewById(R.id.nfc_technologies).findViewById(R.id.text_view_label);
+        nfcTechLabel.setText("Technologies available");
+        textViewSerialNumber = findViewById(R.id.nfc_serial).findViewById(R.id.text_view_info);
+        textViewTechAvailable = findViewById(R.id.nfc_technologies).findViewById(R.id.text_view_info);
+
+
+
+
         spinnersSegment = findViewById(R.id.spinners_layout);
         spinnersSegment.setVisibility(View.GONE);
         mSingle = findViewById(R.id.button_single);
@@ -90,7 +126,7 @@ public class MainActivityNew extends AppCompatActivity {
         measureCount = findViewById(R.id.edit_text_count);
         measureTimeStamp = findViewById(R.id.edit_text_time_stamp);
         measureTimeUnit = findViewById(R.id.spinner_time_unit);
-        measureTimeUnit.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, getResources().getStringArray(R.array.config_spinner_time_unit)));
+        measureTimeUnit.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, getResources().getStringArray(R.array.config_spinner_time_unit)));
 
         mSingle.setOnClickListener(new View.OnClickListener() {
             @Override

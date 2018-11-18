@@ -97,10 +97,11 @@
 
     <Button
         android:id="@+id/button_new_main"
-        android:layout_width="wrap_content"
+        android:layout_width="65dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="new main"
+        android:textSize="8sp"
         app:layout_constraintStart_toEndOf="@+id/button_load_config"
         app:layout_constraintTop_toTopOf="@+id/button_load_config" />
 

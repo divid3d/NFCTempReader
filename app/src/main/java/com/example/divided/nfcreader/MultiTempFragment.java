@@ -156,8 +156,12 @@ public class MultiTempFragment extends android.app.Fragment implements ResultAct
         dataSet.setCircleColor(getResources().getColor(R.color.colorAccent));
         dataSet.setCircleRadius(3f);
         dataSet.setCircleHoleRadius(100);
+        dataSet.setFillColor(getResources().getColor(R.color.colorPrimary));
+        dataSet.setDrawFilled(true);
+        dataSet.setFillAlpha(20);
         dataSet.setValueTypeface(Typeface.createFromAsset(getActivity().getAssets(), "product_sans_regular.ttf"));
         dataSet.setValueTextSize(7f);
+        dataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);
         List<ILineDataSet> dataSets = new ArrayList<>();
         dataSets.add(dataSet);
         LineData data = new LineData(dataSets);
