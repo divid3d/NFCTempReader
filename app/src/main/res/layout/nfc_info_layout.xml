@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <TextView
+        android:id="@+id/text_view_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="8dp"
+        android:layout_toEndOf="@id/image_view_segment_icon"
+        android:fontFamily="@font/product_sans_bold"
+        android:gravity="left"
+        android:text="Sample label"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/text_view_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_view_label"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="1dp"
+        android:layout_toEndOf="@id/image_view_segment_icon"
+        android:fontFamily="@font/product_sans_regular"
+        android:gravity="left"
+        android:text="Sample info" />
+
+    <ImageView
+        android:id="@+id/image_view_segment_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignBottom="@id/text_view_info"
+        android:layout_alignTop="@id/text_view_label"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:src="@android:drawable/ic_dialog_info" />
+
+</RelativeLayout>

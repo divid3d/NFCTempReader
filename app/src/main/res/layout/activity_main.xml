@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/nfc_terminal"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:foregroundGravity="top"
+        android:gravity="left"
+        android:scrollbars="vertical"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nfc_command" />
+
+    <EditText
+        android:id="@+id/nfc_command"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:gravity="left"
+        android:hint="Some nfc command"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toStartOf="@+id/nfc_send_command"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/nfc_send_command"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="send"
+        app:layout_constraintBottom_toBottomOf="@+id/nfc_command"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/nfc_command" />
+
+
+    <RelativeLayout
+        android:id="@+id/nfc_info_segment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <include
+            android:id="@+id/nfc_serial"
+            layout="@layout/nfc_info_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true" />
+
+        <include
+            android:id="@+id/nfc_technologies"
+            layout="@layout/nfc_info_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/nfc_serial"
+            android:layout_marginTop="8dp" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/button_load_config"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Load"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nfc_terminal" />
+
+    <Button
+        android:id="@+id/button_fragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="fragment test"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nfc_terminal" />
+
+    <Button
+        android:id="@+id/button_new_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="new main"
+        app:layout_constraintStart_toEndOf="@+id/button_load_config"
+        app:layout_constraintTop_toTopOf="@+id/button_load_config" />
+
+    <Button
+        android:id="@+id/button_read"
+        android:layout_width="39dp"
+        android:layout_height="wrap_content"
+        android:text="R"
+        app:layout_constraintEnd_toStartOf="@+id/button_fragment"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/button_new_main"
+        app:layout_constraintTop_toBottomOf="@+id/nfc_terminal" />
+
+</android.support.constraint.ConstraintLayout>

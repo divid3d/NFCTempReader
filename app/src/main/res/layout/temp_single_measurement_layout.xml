@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="8dp"
+    android:background="@drawable/temperature_layout_background">
+
+    <TextView
+        android:id="@+id/text_view_temp_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/temperature_layout_background"
+        android:fontFamily="@font/product_sans_bold"
+        android:gravity="center"
+        android:text="123"
+        android:textColor="@android:color/white"
+        android:textSize="90sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/text_view_temp_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/text_view_temp_value"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/product_sans_regular"
+        android:gravity="center"
+        android:text="Temperature"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="50sp"
+        android:textStyle="normal" />
+</RelativeLayout>
